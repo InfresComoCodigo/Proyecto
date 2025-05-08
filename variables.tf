@@ -6,6 +6,7 @@ variable "aws_region" {
 variable "environment" {
     description = "Entorno de despliegue (dev, staging, prod)"
     type        = string
+<<<<<<< HEAD
 }
 
 
@@ -16,3 +17,6 @@ variable "bucket_name" {
 }
 
 ##hola
+=======
+}
+>>>>>>> c428bf4d9e1070bf0457e394c064cc807a50363f
