@@ -1,4 +1,4 @@
-output "function_arn" {
+output "lambda_arn" {
     value = aws_lambda_function.this.arn
 }
 
@@ -10,4 +10,12 @@ data "aws_region" "current" {}
 
 output "api_gateway_domain" {
   value = "${aws_api_gateway_rest_api.api.id}.execute-api.${data.aws_region.current.name}.amazonaws.com"
+}
+  
+output "lambda_invoke_arn" {
+  value = aws_lambda_function.this.invoke_arn
+}
+
+output "lambda_function_name" {
+  value = aws_lambda_function.this.function_name
 }
