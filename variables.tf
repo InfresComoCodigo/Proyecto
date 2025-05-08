@@ -8,12 +8,9 @@ variable "environment" {
     type        = string
 }
 
-variable "db_username" {
-    description = "Nombre de usuario de la base de datos"
-    type        = string
-}
 
-variable "db_password" {
-    description = "Contraseña de la base de datos"
-    type        = string
+variable "bucket_name" {
+  description = "Nombre del bucket del sitio estático"
+  type        = string
+  default     = "evento-static-site-2025-demo"
 }
