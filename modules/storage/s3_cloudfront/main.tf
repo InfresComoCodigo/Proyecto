@@ -54,6 +54,37 @@ resource "aws_cloudfront_distribution" "cdn" {
     }
   }
 
+  origin {
+  domain_name = var.api_gateway_domain
+  origin_id   = "APIGatewayOrigin"
+
+  custom_origin_config {
+    http_port              = 80
+    https_port             = 443
+    origin_protocol_policy = "https-only"
+    origin_ssl_protocols   = ["TLSv1.2"]
+  }
+}
+
+ordered_cache_behavior {
+  path_pattern     = "/api/*"
+  allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
+  cached_methods   = ["GET", "HEAD"]
+  target_origin_id = "APIGatewayOrigin"
+
+  viewer_protocol_policy = "redirect-to-https"
+
+  forwarded_values {
+    query_string = true
+    headers      = ["Authorization"]
+
+    cookies {
+      forward = "all"
+    }
+  }
+}
+
+
   enabled             = true
   is_ipv6_enabled     = true
   default_root_object = "index.html"
