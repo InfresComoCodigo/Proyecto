@@ -89,7 +89,9 @@ output "api_url" {
  }
   
 ## S3 + cloudfront
+
 module "static_site" {
-  source      = "./modules/storage/s3_cloudfront"
-  bucket_name = var.bucket_name
+  source             = "./modules/storage/s3_cloudfront"
+  bucket_name        = var.bucket_name
+  api_gateway_domain = module.lambda_api.api_gateway_domain
 }
