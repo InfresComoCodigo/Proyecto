@@ -86,4 +86,10 @@ module "api_gateway_http" {
 
 output "api_url" {
   value = module.api_gateway_http.api_endpoint
+ }
+  
+## S3 + cloudfront
+module "static_site" {
+  source      = "./modules/storage/s3_cloudfront"
+  bucket_name = var.bucket_name
 }

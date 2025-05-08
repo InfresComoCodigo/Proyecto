@@ -12,10 +12,6 @@
 
 .terraform.lock.hcl
 
-# Otros archivos
-*.zip
+.zip
 
-node_modules
-package-lock.json
-package.json
-*.log
+.node_modules
