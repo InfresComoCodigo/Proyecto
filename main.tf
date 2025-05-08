@@ -76,3 +76,14 @@ module "eventbridge_scheduler" {
   lambda_arn          = module.lambda_api.lambda_arn # o lambda_aurora
   schedule_expression = "rate(5 minutes)"
 }
+
+module "api_gateway_http" {
+  source = "./modules/compute/api_gateway_http"
+  api_name             = "my-api-http"
+  lambda_invoke_arn    = module.lambda_api.lambda_invoke_arn  # O como hayas definido tu Lambda
+  lambda_function_name = module.lambda_api.lambda_function_name
+}
+
+output "api_url" {
+  value = module.api_gateway_http.api_endpoint
+}
