@@ -70,3 +70,9 @@ module "lambda_aurora" {
     subnet_ids          = local.default_subnet_ids
     default_sg_id       = local.default_sg_id
 }
+
+module "eventbridge_scheduler" {
+  source              = "./modules/integration/eventbridge_scheduler"
+  lambda_arn          = module.lambda_api.lambda_arn # o lambda_aurora
+  schedule_expression = "rate(5 minutes)"
+}
