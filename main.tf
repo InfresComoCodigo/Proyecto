@@ -69,4 +69,5 @@ module "lambda_aurora" {
     aurora_secret_arn   = module.aurora.secret_arn
     subnet_ids          = local.default_subnet_ids
     default_sg_id       = local.default_sg_id
+    aws_region          = var.aws_region
 }
