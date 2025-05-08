@@ -1,17 +1,21 @@
-provider "aws" {
-  region = "us-east-1"
-}
-
 resource "aws_s3_bucket" "static_site" {
   bucket = var.bucket_name
+}
 
-  website {
-    index_document = "index.html"
-    error_document = "error.html"
+# ✅ Nueva forma recomendada para configurar el sitio web
+resource "aws_s3_bucket_website_configuration" "static_site_config" {
+  bucket = aws_s3_bucket.static_site.id
+
+  index_document {
+    suffix = "index.html"
+  }
+
+  error_document {
+    key = "error.html"
   }
 }
 
-# Permite acceso público al bucket (evita el error AccessDenied)
+# Permite acceso público al bucket
 resource "aws_s3_bucket_public_access_block" "allow_public_access" {
   bucket = aws_s3_bucket.static_site.id
 
@@ -21,7 +25,7 @@ resource "aws_s3_bucket_public_access_block" "allow_public_access" {
   restrict_public_buckets = false
 }
 
-#  Política pública de acceso
+# Política pública para permitir lectura pública
 resource "aws_s3_bucket_policy" "allow_public" {
   bucket = aws_s3_bucket.static_site.id
   policy = jsonencode({
@@ -36,10 +40,10 @@ resource "aws_s3_bucket_policy" "allow_public" {
   })
 }
 
-# Distribución CDN
+# ✅ CloudFront configurado con el nuevo endpoint
 resource "aws_cloudfront_distribution" "cdn" {
   origin {
-    domain_name = aws_s3_bucket.static_site.website_endpoint
+    domain_name = aws_s3_bucket_website_configuration.static_site_config.website_endpoint
     origin_id   = "S3Origin"
 
     custom_origin_config {
