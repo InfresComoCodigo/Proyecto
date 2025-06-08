@@ -11,3 +11,10 @@
 *.tfvars
 
 .terraform.lock.hcl
+
+.zip
+
+.node_modules
+
+node_modules/
+node_modules

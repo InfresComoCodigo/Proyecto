@@ -13,33 +13,36 @@ Teniendo en cuenta dicha estructura del proyecto
 
 ```plaintext
 /infraestructura-aws/
-├── main.tf
-├── provider.tf
-├── versions.tf
-├── variables.tf
-├── terraform.tfvars
-├── outputs.tf
+├── main.tf                 # Orquesta cada módulo
+├── provider.tf             # AWS + versiones Terraform
+├── versions.tf             # required_providers y versionado
+├── variables.tf            # Región, etiquetas, nombres lógicos
+├── terraform.tfvars        # Valores por ambiente (dev por defecto)
+├── outputs.tf              # URL CloudFront, ARNs de API, SNS, etc.
 └── modules/
     ├── edge/
-    │   ├── route53/               # Zona y registros públicos
-    │   ├── waf/                   # Reglas de firewall
-    │   └── s3_cloudfront/         # Sitio estático + CDN
+    │   ├── route53/            # Zona + registros A/AAAA/CNAME
+    │   ├── s3_cloudfront/      # Bucket estático + distribución
+    │   └── waf/                # Web ACL y asociación a CloudFront
     ├── api/
-    │   └── api_gateway/           # Puerta de enlace REST/HTTP
+    │   └── api_gateway/        # REST/HTTP API + CORS
     ├── compute/
-    │   ├── lambda_core/           # Capa con librerías comunes
+    │   ├── lambda_core/        # Layer con libs comunes
     │   ├── lambda_usuarios/
     │   ├── lambda_reserva_local/
     │   ├── lambda_eventos/
-    │   ├── lambda_pagos/
-    │   ├── lambda_notificaciones/ # Publica en SNS
-    │   └── lambda_envia_notif/    # Consume SNS y llama Twilio
+    │   ├── lambda_pagos/       # Invoca pasarela de pagos externa
+    │   ├── lambda_notificaciones/   # Publica en SNS
+    │   └── lambda_envia_notif/      # Lee SNS y llama a Twilio
     ├── data/
-    │   └── dynamodb/              # Tablas e índices
+    │   └── dynamodb/           # Tablas + GSIs
     ├── messaging/
-    │   └── sns/                   # Topic + suscripciones
+    │   └── sns/                # Topic + políticas
     ├── networking/
-    │   └── vpc_public/            # VPC y subnet (por si luego creces)
+    │   └── vpc_public/         # VPC + subnet pública (simple)
+    ├── monitoring/
+    │   ├── grafana_docker/     # Receta Docker Compose
+    │   └── cloudwatch/         
     └── security/
-        ├── iam/                   # Roles/policies finas
-        └── sg/                    # Security Groups (si los necesitas)
+        ├── iam/                # Roles y policies mínimos
+        └── sg/                 # Security Groups (por si luego añades algo)
