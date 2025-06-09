@@ -52,3 +52,22 @@ output "api_gateway_domain" {
   description = "URL del endpoint HTTP API Gateway"
   value       = module.api_gateway.api_domain_name
 }
+
+
+# -------------------------------
+# IMPLEMENTACON DE LA FUNCIÓN LAMBDA_USUARIOS
+# -------------------------------
+
+module "lambda_usuarios" {
+  source = "./modules/compute/lambda_usuarios"
+
+  # Ruta real al código Node.js
+  source_path = "${path.root}/src/lambda_usuarios"
+
+  # Parámetros clave
+  function_name       = "usuarios-handler-dev"
+  dynamodb_table_name = "usuarios"
+
+  # (opcional) restringe aún más el permiso
+  # api_execution_arn = module.api_gateway.execution_arn
+}
