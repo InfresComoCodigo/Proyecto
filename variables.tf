@@ -1,15 +1,11 @@
 variable "aws_region" {
-    description = "AWS la region se desplegara la infraestructura"
-    type        = string
+  description = "Región de AWS donde se desplegará la infraestructura"
+  type        = string
+  default     = "us-east-1" # puedes sobreescribirlo desde terraform.tfvars
 }
 
 variable "environment" {
-    description = "Entorno de despliegue (dev, staging, prod)"
-    type        = string
-}
-
-variable "bucket_name" {
-  description = "Nombre del bucket del sitio estático"
+  description = "Ambiente de despliegue (dev, staging, prod)"
   type        = string
-  default     = "evento-static-site-2025-demo"
+  default     = "dev"
 }
