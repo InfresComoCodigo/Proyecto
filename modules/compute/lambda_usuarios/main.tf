@@ -8,8 +8,7 @@ data "aws_caller_identity" "current" {}
 # Locales
 ###############################################################################
 locals {
-  lambda_source_dir = var.source_path != "" ? var.source_path: "${path.module}/../../../../src/lambda_usuarios"
-
+  lambda_source_dir = var.source_path != "" ? var.source_path : "${path.module}/../../../../src/lambda_usuarios"
   lambda_zip_path   = "${path.module}/build/${var.function_name}.zip"
 }
 
@@ -37,7 +36,7 @@ data "aws_iam_policy_document" "assume" {
 }
 
 data "aws_iam_policy_document" "policy" {
-  # Acceso a la tabla
+  # Acceso a la tabla DynamoDB
   statement {
     sid     = "DynamoDBWrite"
     effect  = "Allow"
@@ -47,7 +46,7 @@ data "aws_iam_policy_document" "policy" {
     ]
   }
 
-  # Logs
+  # Acceso a CloudWatch Logs
   statement {
     sid     = "CloudWatchLogs"
     effect  = "Allow"
@@ -64,6 +63,19 @@ resource "aws_iam_role" "lambda_role" {
 resource "aws_iam_role_policy" "inline" {
   role   = aws_iam_role.lambda_role.id
   policy = data.aws_iam_policy_document.policy.json
+}
+
+###############################################################################
+# CloudWatch Log Group para los logs de la Lambda
+###############################################################################
+resource "aws_cloudwatch_log_group" "lambda_log_group" {
+  name              = "/aws/lambda/${var.function_name}"
+  retention_in_days = var.log_retention_in_days  # Usamos la variable para la retención
+
+  tags = {
+    project     = "Villa Alfredo"
+    environment = terraform.workspace
+  }
 }
 
 ###############################################################################
@@ -91,17 +103,19 @@ resource "aws_lambda_function" "this" {
     project     = "Villa Alfredo"
     environment = terraform.workspace
   }
+
+  # Hacer referencia al Log Group ya creado en lugar de crear un ciclo
+  depends_on = [aws_cloudwatch_log_group.lambda_log_group]
 }
 
 ###############################################################################
 # Permiso para API Gateway
 ###############################################################################
-# Permiso para que API Gateway invoque la Lambda
 resource "aws_lambda_permission" "apigw_invoke" {
   statement_id  = "AllowAPIGatewayInvoke"
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.this.function_name
   principal     = "apigateway.amazonaws.com"
 
-  source_arn = var.api_execution_arn != "" ?"${var.api_execution_arn}/*/usuarios*" :"arn:aws:execute-api:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:*/*/*/usuarios*"
+  source_arn = var.api_execution_arn != "" ? "${var.api_execution_arn}/*/usuarios*" : "arn:aws:execute-api:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:*/*/*/usuarios*"
 }

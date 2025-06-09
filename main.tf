@@ -77,7 +77,7 @@ module "lambda_usuarios" {
 # DYNAMODB PARA USUARIOS
 # -------------------------------
 ########################################
-# 0) Tabla DynamoDB de usuarios
+# 0 Tabla DynamoDB de usuarios
 ########################################
 module "usuarios_table" {
   source      = "./modules/data/dynamodb"

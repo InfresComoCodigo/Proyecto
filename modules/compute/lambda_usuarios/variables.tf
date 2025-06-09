@@ -41,3 +41,9 @@ variable "api_execution_arn" {
   type        = string
   default     = ""
 }
+
+variable "log_retention_in_days" {
+  description = "Número de días que los logs de Lambda se mantendrán"
+  type        = number
+  default     = 14  # 14 días por defecto
+}

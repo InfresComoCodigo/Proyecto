@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin  # Cambia por una contraseña segura
+    ports:
+      - "3000:3000"  # Grafana estará disponible en localhost:3000
+    volumes:
+      - grafana-storage:/var/lib/grafana
+    restart: always
+
+volumes:
+  grafana-storage:
+    driver: local
