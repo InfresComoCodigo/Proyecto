@@ -66,8 +66,21 @@ module "lambda_usuarios" {
 
   # Parámetros clave
   function_name       = "usuarios-handler-dev"
-  dynamodb_table_name = "usuarios"
+
+  dynamodb_table_name = module.usuarios_table.table_name
 
   # (opcional) restringe aún más el permiso
   # api_execution_arn = module.api_gateway.execution_arn
+}
+
+# -------------------------------
+# DYNAMODB PARA USUARIOS
+# -------------------------------
+########################################
+# 0) Tabla DynamoDB de usuarios
+########################################
+module "usuarios_table" {
+  source      = "./modules/data/dynamodb"
+  table_name  = "usuarios"   # pon otro nombre si prefieres
+  hash_key    = "dni"
 }
