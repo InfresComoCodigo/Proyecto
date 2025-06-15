@@ -69,10 +69,10 @@ ordered_cache_behavior {
   }
 }
 
-
-  restrictions {
+    restrictions {
     geo_restriction {
-      restriction_type = "none"
+      restriction_type = "whitelist"
+      locations        = ["PE"] # Solo permite acceder desde Perú
     }
   }
 
