@@ -47,3 +47,9 @@ variable "log_retention_in_days" {
   type        = number
   default     = 14  # 14 días por defecto
 }
+
+variable "kms_key_arn" {
+  type        = string
+  description = "ARN de la clave KMS para cifrado de logs en CloudWatch"
+}
+
