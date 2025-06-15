@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
-<testsuites disabled="0" errors="0" failures="25" tests="76" time="0.0">
-	<testsuite disabled="0" errors="0" failures="25" name="terraform scan" skipped="1" tests="76" time="0">
+<testsuites disabled="0" errors="0" failures="25" tests="80" time="0.0">
+	<testsuite disabled="0" errors="0" failures="25" name="terraform scan" skipped="1" tests="80" time="0">
 		<properties>
 			<property name="directory" value="['/app']"/>
 			<property name="add_check" value="False"/>
@@ -63,6 +63,7 @@
 		<testcase name="[NONE][CKV_AWS_62] Ensure IAM policies that allow full &quot;*-*&quot; administrative privileges are not created" classname="/modules/compute/lambda_usuarios/main.tf.module.lambda_usuarios.aws_iam_role_policy.inline" file="/modules/compute/lambda_usuarios/main.tf"/>
 		<testcase name="[NONE][CKV_AWS_63] Ensure no IAM policies documents allow &quot;*&quot; as a statement's actions" classname="/modules/compute/lambda_usuarios/main.tf.module.lambda_usuarios.aws_iam_role_policy.inline" file="/modules/compute/lambda_usuarios/main.tf"/>
 		<testcase name="[NONE][CKV_AWS_66] Ensure that CloudWatch Log Group specifies retention days" classname="/modules/compute/lambda_usuarios/main.tf.module.lambda_usuarios.aws_cloudwatch_log_group.lambda_log_group" file="/modules/compute/lambda_usuarios/main.tf"/>
+		<testcase name="[NONE][CKV_AWS_158] Ensure that CloudWatch Log Group is encrypted by KMS" classname="/modules/compute/lambda_usuarios/main.tf.module.lambda_usuarios.aws_cloudwatch_log_group.lambda_log_group" file="/modules/compute/lambda_usuarios/main.tf"/>
 		<testcase name="[NONE][CKV_AWS_45] Ensure no hard-coded secrets exist in lambda environment" classname="/modules/compute/lambda_usuarios/main.tf.module.lambda_usuarios.aws_lambda_function.this" file="/modules/compute/lambda_usuarios/main.tf"/>
 		<testcase name="[NONE][CKV_AWS_363] Ensure Lambda Runtime is not deprecated" classname="/modules/compute/lambda_usuarios/main.tf.module.lambda_usuarios.aws_lambda_function.this" file="/modules/compute/lambda_usuarios/main.tf"/>
 		<testcase name="[NONE][CKV_AWS_364] Ensure that AWS Lambda function permissions delegated to AWS services are limited by SourceArn or SourceAccount" classname="/modules/compute/lambda_usuarios/main.tf.module.lambda_usuarios.aws_lambda_permission.apigw_invoke" file="/modules/compute/lambda_usuarios/main.tf"/>
@@ -74,239 +75,224 @@
 		<testcase name="[NONE][CKV_AWS_34] Ensure CloudFront distribution ViewerProtocolPolicy is set to HTTPS" classname="/modules/edge/s3_cloudfront/main.tf.module.s3_cloudfront.aws_cloudfront_distribution.cdn" file="/modules/edge/s3_cloudfront/main.tf"/>
 		<testcase name="[NONE][CKV_AWS_175] Ensure WAF has associated rules" classname="/modules/edge/waf/main.tf.module.waf.aws_wafv2_web_acl.this" file="/modules/edge/waf/main.tf"/>
 		<testcase name="[NONE][CKV_AWS_342] Ensure WAF rule has any actions" classname="/modules/edge/waf/main.tf.module.waf.aws_wafv2_web_acl.this" file="/modules/edge/waf/main.tf"/>
+		<testcase name="[NONE][CKV_AWS_33] Ensure KMS key policy does not contain wildcard (*) principal" classname="/modules/security/Cloudwatch/kms_logs.tf.module.kms_logs.aws_kms_key.log_encryption" file="/modules/security/Cloudwatch/kms_logs.tf"/>
+		<testcase name="[NONE][CKV_AWS_227] Ensure KMS key is enabled" classname="/modules/security/Cloudwatch/kms_logs.tf.module.kms_logs.aws_kms_key.log_encryption" file="/modules/security/Cloudwatch/kms_logs.tf"/>
+		<testcase name="[NONE][CKV_AWS_7] Ensure rotation for customer created CMKs is enabled" classname="/modules/security/Cloudwatch/kms_logs.tf.module.kms_logs.aws_kms_key.log_encryption" file="/modules/security/Cloudwatch/kms_logs.tf"/>
 		<testcase name="[NONE][CKV_AWS_41] Ensure no hard coded AWS access key and secret key exists in provider" classname="/provider.tf.aws.default" file="/provider.tf"/>
 		<testcase name="[NONE][CKV2_AWS_56] Ensure AWS Managed IAMFullAccess IAM policy is not used." classname="/modules/compute/lambda_usuarios/main.tf.module.lambda_usuarios.aws_iam_role.lambda_role" file="/modules/compute/lambda_usuarios/main.tf"/>
 		<testcase name="[NONE][CKV_AWS_57] S3 Bucket has an ACL defined which allows public WRITE access." classname="/modules/edge/s3_cloudfront/main.tf.module.s3_cloudfront.aws_s3_bucket.this" file="/modules/edge/s3_cloudfront/main.tf"/>
 		<testcase name="[NONE][CKV2_AWS_16] Ensure that Auto Scaling is enabled on your DynamoDB tables" classname="/modules/data/dynamodb/main.tf.module.usuarios_table.aws_dynamodb_table.this" file="/modules/data/dynamodb/main.tf"/>
 		<testcase name="[NONE][CKV_AWS_20] S3 Bucket has an ACL defined which allows public READ access." classname="/modules/edge/s3_cloudfront/main.tf.module.s3_cloudfront.aws_s3_bucket.this" file="/modules/edge/s3_cloudfront/main.tf"/>
-		<testcase name="[NONE][CKV2_AWS_75] Ensure no open CORS policy" classname="/modules/compute/lambda_usuarios/main.tf.module.lambda_usuarios.aws_lambda_function.this" file="/modules/compute/lambda_usuarios/main.tf"/>
-		<testcase name="[NONE][CKV2_AWS_54] Ensure AWS CloudFront distribution is using secure SSL protocols for HTTPS communication" classname="/modules/edge/s3_cloudfront/main.tf.module.s3_cloudfront.aws_cloudfront_distribution.cdn" file="/modules/edge/s3_cloudfront/main.tf"/>
 		<testcase name="[NONE][CKV_AWS_19] Ensure all data stored in the S3 bucket is securely encrypted at rest" classname="/modules/edge/s3_cloudfront/main.tf.module.s3_cloudfront.aws_s3_bucket.this" file="/modules/edge/s3_cloudfront/main.tf"/>
+		<testcase name="[NONE][CKV2_AWS_54] Ensure AWS CloudFront distribution is using secure SSL protocols for HTTPS communication" classname="/modules/edge/s3_cloudfront/main.tf.module.s3_cloudfront.aws_cloudfront_distribution.cdn" file="/modules/edge/s3_cloudfront/main.tf"/>
+		<testcase name="[NONE][CKV2_AWS_75] Ensure no open CORS policy" classname="/modules/compute/lambda_usuarios/main.tf.module.lambda_usuarios.aws_lambda_function.this" file="/modules/compute/lambda_usuarios/main.tf"/>
+		<testcase name="[NONE][CKV2_AWS_77] Ensure AWS API Gateway Rest API attached WAFv2 WebACL is configured with AMR for Log4j Vulnerability" classname="/modules/api/api_gateway/main.tf.module.api_gateway.aws_apigatewayv2_api.this" file="/modules/api/api_gateway/main.tf"/>
 		<testcase name="[NONE][CKV2_AWS_72] Ensure AWS CloudFront origin protocol policy enforces HTTPS-only" classname="/modules/edge/s3_cloudfront/main.tf.module.s3_cloudfront.aws_cloudfront_distribution.cdn" file="/modules/edge/s3_cloudfront/main.tf"/>
 		<testcase name="[NONE][CKV2_AWS_40] Ensure AWS IAM policy does not allow full IAM privileges" classname="/modules/compute/lambda_usuarios/main.tf.module.lambda_usuarios.aws_iam_policy_document.assume" file="/modules/compute/lambda_usuarios/main.tf"/>
 		<testcase name="[NONE][CKV2_AWS_40] Ensure AWS IAM policy does not allow full IAM privileges" classname="/modules/compute/lambda_usuarios/main.tf.module.lambda_usuarios.aws_iam_policy_document.policy" file="/modules/compute/lambda_usuarios/main.tf"/>
-		<testcase name="[NONE][CKV2_AWS_77] Ensure AWS API Gateway Rest API attached WAFv2 WebACL is configured with AMR for Log4j Vulnerability" classname="/modules/api/api_gateway/main.tf.module.api_gateway.aws_apigatewayv2_api.this" file="/modules/api/api_gateway/main.tf"/>
 		<testcase name="[NONE][CKV2_AWS_46] Ensure AWS CloudFront Distribution with S3 have Origin Access set to enabled" classname="/modules/edge/s3_cloudfront/main.tf.module.s3_cloudfront.aws_cloudfront_distribution.cdn" file="/modules/edge/s3_cloudfront/main.tf"/>
-		<testcase name="[NONE][CKV_AWS_158] Ensure that CloudWatch Log Group is encrypted by KMS" classname="/modules/compute/lambda_usuarios/main.tf.module.lambda_usuarios.aws_cloudwatch_log_group.lambda_log_group" file="/modules/compute/lambda_usuarios/main.tf">
-			<failure type="failure" message="Ensure that CloudWatch Log Group is encrypted by KMS">
-Resource: module.lambda_usuarios.aws_cloudwatch_log_group.lambda_log_group
-File: /modules/compute/lambda_usuarios/main.tf: 71-80
-Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-cloudwatch-log-group-is-encrypted-by-kms
-
-		71 | resource &quot;aws_cloudwatch_log_group&quot; &quot;lambda_log_group&quot; {
-		72 |   # checkov:skip=CKV_AWS_338: Retención definida en 14 días por política interna de Villa Alfredo
-		73 |   name              = &quot;/aws/lambda/${var.function_name}&quot;
-		74 |   retention_in_days = 14
-		75 | 
-		76 |   tags = {
-		77 |     project     = &quot;Villa Alfredo&quot;
-		78 |     environment = terraform.workspace
-		79 |   }
-		80 | }
-</failure>
-		</testcase>
 		<testcase name="[NONE][CKV_AWS_272] Ensure AWS Lambda function is configured to validate code-signing" classname="/modules/compute/lambda_usuarios/main.tf.module.lambda_usuarios.aws_lambda_function.this" file="/modules/compute/lambda_usuarios/main.tf">
 			<failure type="failure" message="Ensure AWS Lambda function is configured to validate code-signing">
 Resource: module.lambda_usuarios.aws_lambda_function.this
-File: /modules/compute/lambda_usuarios/main.tf: 86-111
+File: /modules/compute/lambda_usuarios/main.tf: 87-112
 Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-272
 
-		86  | resource &quot;aws_lambda_function&quot; &quot;this&quot; {
-		87  |   function_name    = var.function_name
-		88  |   role             = aws_iam_role.lambda_role.arn
-		89  |   runtime          = var.runtime
-		90  |   handler          = var.handler
-		91  | 
-		92  |   filename         = data.archive_file.zip.output_path
-		93  |   source_code_hash = data.archive_file.zip.output_base64sha256
-		94  | 
-		95  |   memory_size      = var.memory_size
-		96  |   timeout          = var.timeout
-		97  | 
-		98  |   environment {
-		99  |     variables = {
-		100 |       USERS_TABLE = var.dynamodb_table_name
-		101 |     }
-		102 |   }
-		103 | 
-		104 |   tags = {
-		105 |     project     = &quot;Villa Alfredo&quot;
-		106 |     environment = terraform.workspace
-		107 |   }
-		108 | 
-		109 |   # Hacer referencia al Log Group ya creado en lugar de crear un ciclo
-		110 |   depends_on = [aws_cloudwatch_log_group.lambda_log_group]
-		111 | }
+		87  | resource &quot;aws_lambda_function&quot; &quot;this&quot; {
+		88  |   function_name    = var.function_name
+		89  |   role             = aws_iam_role.lambda_role.arn
+		90  |   runtime          = var.runtime
+		91  |   handler          = var.handler
+		92  | 
+		93  |   filename         = data.archive_file.zip.output_path
+		94  |   source_code_hash = data.archive_file.zip.output_base64sha256
+		95  | 
+		96  |   memory_size      = var.memory_size
+		97  |   timeout          = var.timeout
+		98  | 
+		99  |   environment {
+		100 |     variables = {
+		101 |       USERS_TABLE = var.dynamodb_table_name
+		102 |     }
+		103 |   }
+		104 | 
+		105 |   tags = {
+		106 |     project     = &quot;Villa Alfredo&quot;
+		107 |     environment = terraform.workspace
+		108 |   }
+		109 | 
+		110 |   # Hacer referencia al Log Group ya creado en lugar de crear un ciclo
+		111 |   depends_on = [aws_cloudwatch_log_group.lambda_log_group]
+		112 | }
 </failure>
 		</testcase>
 		<testcase name="[NONE][CKV_AWS_117] Ensure that AWS Lambda function is configured inside a VPC" classname="/modules/compute/lambda_usuarios/main.tf.module.lambda_usuarios.aws_lambda_function.this" file="/modules/compute/lambda_usuarios/main.tf">
 			<failure type="failure" message="Ensure that AWS Lambda function is configured inside a VPC">
 Resource: module.lambda_usuarios.aws_lambda_function.this
-File: /modules/compute/lambda_usuarios/main.tf: 86-111
+File: /modules/compute/lambda_usuarios/main.tf: 87-112
 Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-aws-lambda-function-is-configured-inside-a-vpc-1
 
-		86  | resource &quot;aws_lambda_function&quot; &quot;this&quot; {
-		87  |   function_name    = var.function_name
-		88  |   role             = aws_iam_role.lambda_role.arn
-		89  |   runtime          = var.runtime
-		90  |   handler          = var.handler
-		91  | 
-		92  |   filename         = data.archive_file.zip.output_path
-		93  |   source_code_hash = data.archive_file.zip.output_base64sha256
-		94  | 
-		95  |   memory_size      = var.memory_size
-		96  |   timeout          = var.timeout
-		97  | 
-		98  |   environment {
-		99  |     variables = {
-		100 |       USERS_TABLE = var.dynamodb_table_name
-		101 |     }
-		102 |   }
-		103 | 
-		104 |   tags = {
-		105 |     project     = &quot;Villa Alfredo&quot;
-		106 |     environment = terraform.workspace
-		107 |   }
-		108 | 
-		109 |   # Hacer referencia al Log Group ya creado en lugar de crear un ciclo
-		110 |   depends_on = [aws_cloudwatch_log_group.lambda_log_group]
-		111 | }
+		87  | resource &quot;aws_lambda_function&quot; &quot;this&quot; {
+		88  |   function_name    = var.function_name
+		89  |   role             = aws_iam_role.lambda_role.arn
+		90  |   runtime          = var.runtime
+		91  |   handler          = var.handler
+		92  | 
+		93  |   filename         = data.archive_file.zip.output_path
+		94  |   source_code_hash = data.archive_file.zip.output_base64sha256
+		95  | 
+		96  |   memory_size      = var.memory_size
+		97  |   timeout          = var.timeout
+		98  | 
+		99  |   environment {
+		100 |     variables = {
+		101 |       USERS_TABLE = var.dynamodb_table_name
+		102 |     }
+		103 |   }
+		104 | 
+		105 |   tags = {
+		106 |     project     = &quot;Villa Alfredo&quot;
+		107 |     environment = terraform.workspace
+		108 |   }
+		109 | 
+		110 |   # Hacer referencia al Log Group ya creado en lugar de crear un ciclo
+		111 |   depends_on = [aws_cloudwatch_log_group.lambda_log_group]
+		112 | }
 </failure>
 		</testcase>
 		<testcase name="[NONE][CKV_AWS_173] Check encryption settings for Lambda environmental variable" classname="/modules/compute/lambda_usuarios/main.tf.module.lambda_usuarios.aws_lambda_function.this" file="/modules/compute/lambda_usuarios/main.tf">
 			<failure type="failure" message="Check encryption settings for Lambda environmental variable">
 Resource: module.lambda_usuarios.aws_lambda_function.this
-File: /modules/compute/lambda_usuarios/main.tf: 86-111
+File: /modules/compute/lambda_usuarios/main.tf: 87-112
 Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-serverless-policies/bc-aws-serverless-5
 
-		86  | resource &quot;aws_lambda_function&quot; &quot;this&quot; {
-		87  |   function_name    = var.function_name
-		88  |   role             = aws_iam_role.lambda_role.arn
-		89  |   runtime          = var.runtime
-		90  |   handler          = var.handler
-		91  | 
-		92  |   filename         = data.archive_file.zip.output_path
-		93  |   source_code_hash = data.archive_file.zip.output_base64sha256
-		94  | 
-		95  |   memory_size      = var.memory_size
-		96  |   timeout          = var.timeout
-		97  | 
-		98  |   environment {
-		99  |     variables = {
-		100 |       USERS_TABLE = var.dynamodb_table_name
-		101 |     }
-		102 |   }
-		103 | 
-		104 |   tags = {
-		105 |     project     = &quot;Villa Alfredo&quot;
-		106 |     environment = terraform.workspace
-		107 |   }
-		108 | 
-		109 |   # Hacer referencia al Log Group ya creado en lugar de crear un ciclo
-		110 |   depends_on = [aws_cloudwatch_log_group.lambda_log_group]
-		111 | }
+		87  | resource &quot;aws_lambda_function&quot; &quot;this&quot; {
+		88  |   function_name    = var.function_name
+		89  |   role             = aws_iam_role.lambda_role.arn
+		90  |   runtime          = var.runtime
+		91  |   handler          = var.handler
+		92  | 
+		93  |   filename         = data.archive_file.zip.output_path
+		94  |   source_code_hash = data.archive_file.zip.output_base64sha256
+		95  | 
+		96  |   memory_size      = var.memory_size
+		97  |   timeout          = var.timeout
+		98  | 
+		99  |   environment {
+		100 |     variables = {
+		101 |       USERS_TABLE = var.dynamodb_table_name
+		102 |     }
+		103 |   }
+		104 | 
+		105 |   tags = {
+		106 |     project     = &quot;Villa Alfredo&quot;
+		107 |     environment = terraform.workspace
+		108 |   }
+		109 | 
+		110 |   # Hacer referencia al Log Group ya creado en lugar de crear un ciclo
+		111 |   depends_on = [aws_cloudwatch_log_group.lambda_log_group]
+		112 | }
 </failure>
 		</testcase>
 		<testcase name="[NONE][CKV_AWS_115] Ensure that AWS Lambda function is configured for function-level concurrent execution limit" classname="/modules/compute/lambda_usuarios/main.tf.module.lambda_usuarios.aws_lambda_function.this" file="/modules/compute/lambda_usuarios/main.tf">
 			<failure type="failure" message="Ensure that AWS Lambda function is configured for function-level concurrent execution limit">
 Resource: module.lambda_usuarios.aws_lambda_function.this
-File: /modules/compute/lambda_usuarios/main.tf: 86-111
+File: /modules/compute/lambda_usuarios/main.tf: 87-112
 Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-aws-lambda-function-is-configured-for-function-level-concurrent-execution-limit
 
-		86  | resource &quot;aws_lambda_function&quot; &quot;this&quot; {
-		87  |   function_name    = var.function_name
-		88  |   role             = aws_iam_role.lambda_role.arn
-		89  |   runtime          = var.runtime
-		90  |   handler          = var.handler
-		91  | 
-		92  |   filename         = data.archive_file.zip.output_path
-		93  |   source_code_hash = data.archive_file.zip.output_base64sha256
-		94  | 
-		95  |   memory_size      = var.memory_size
-		96  |   timeout          = var.timeout
-		97  | 
-		98  |   environment {
-		99  |     variables = {
-		100 |       USERS_TABLE = var.dynamodb_table_name
-		101 |     }
-		102 |   }
-		103 | 
-		104 |   tags = {
-		105 |     project     = &quot;Villa Alfredo&quot;
-		106 |     environment = terraform.workspace
-		107 |   }
-		108 | 
-		109 |   # Hacer referencia al Log Group ya creado en lugar de crear un ciclo
-		110 |   depends_on = [aws_cloudwatch_log_group.lambda_log_group]
-		111 | }
+		87  | resource &quot;aws_lambda_function&quot; &quot;this&quot; {
+		88  |   function_name    = var.function_name
+		89  |   role             = aws_iam_role.lambda_role.arn
+		90  |   runtime          = var.runtime
+		91  |   handler          = var.handler
+		92  | 
+		93  |   filename         = data.archive_file.zip.output_path
+		94  |   source_code_hash = data.archive_file.zip.output_base64sha256
+		95  | 
+		96  |   memory_size      = var.memory_size
+		97  |   timeout          = var.timeout
+		98  | 
+		99  |   environment {
+		100 |     variables = {
+		101 |       USERS_TABLE = var.dynamodb_table_name
+		102 |     }
+		103 |   }
+		104 | 
+		105 |   tags = {
+		106 |     project     = &quot;Villa Alfredo&quot;
+		107 |     environment = terraform.workspace
+		108 |   }
+		109 | 
+		110 |   # Hacer referencia al Log Group ya creado en lugar de crear un ciclo
+		111 |   depends_on = [aws_cloudwatch_log_group.lambda_log_group]
+		112 | }
 </failure>
 		</testcase>
 		<testcase name="[NONE][CKV_AWS_116] Ensure that AWS Lambda function is configured for a Dead Letter Queue(DLQ)" classname="/modules/compute/lambda_usuarios/main.tf.module.lambda_usuarios.aws_lambda_function.this" file="/modules/compute/lambda_usuarios/main.tf">
 			<failure type="failure" message="Ensure that AWS Lambda function is configured for a Dead Letter Queue(DLQ)">
 Resource: module.lambda_usuarios.aws_lambda_function.this
-File: /modules/compute/lambda_usuarios/main.tf: 86-111
+File: /modules/compute/lambda_usuarios/main.tf: 87-112
 Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-aws-lambda-function-is-configured-for-a-dead-letter-queue-dlq
 
-		86  | resource &quot;aws_lambda_function&quot; &quot;this&quot; {
-		87  |   function_name    = var.function_name
-		88  |   role             = aws_iam_role.lambda_role.arn
-		89  |   runtime          = var.runtime
-		90  |   handler          = var.handler
-		91  | 
-		92  |   filename         = data.archive_file.zip.output_path
-		93  |   source_code_hash = data.archive_file.zip.output_base64sha256
-		94  | 
-		95  |   memory_size      = var.memory_size
-		96  |   timeout          = var.timeout
-		97  | 
-		98  |   environment {
-		99  |     variables = {
-		100 |       USERS_TABLE = var.dynamodb_table_name
-		101 |     }
-		102 |   }
-		103 | 
-		104 |   tags = {
-		105 |     project     = &quot;Villa Alfredo&quot;
-		106 |     environment = terraform.workspace
-		107 |   }
-		108 | 
-		109 |   # Hacer referencia al Log Group ya creado en lugar de crear un ciclo
-		110 |   depends_on = [aws_cloudwatch_log_group.lambda_log_group]
-		111 | }
+		87  | resource &quot;aws_lambda_function&quot; &quot;this&quot; {
+		88  |   function_name    = var.function_name
+		89  |   role             = aws_iam_role.lambda_role.arn
+		90  |   runtime          = var.runtime
+		91  |   handler          = var.handler
+		92  | 
+		93  |   filename         = data.archive_file.zip.output_path
+		94  |   source_code_hash = data.archive_file.zip.output_base64sha256
+		95  | 
+		96  |   memory_size      = var.memory_size
+		97  |   timeout          = var.timeout
+		98  | 
+		99  |   environment {
+		100 |     variables = {
+		101 |       USERS_TABLE = var.dynamodb_table_name
+		102 |     }
+		103 |   }
+		104 | 
+		105 |   tags = {
+		106 |     project     = &quot;Villa Alfredo&quot;
+		107 |     environment = terraform.workspace
+		108 |   }
+		109 | 
+		110 |   # Hacer referencia al Log Group ya creado en lugar de crear un ciclo
+		111 |   depends_on = [aws_cloudwatch_log_group.lambda_log_group]
+		112 | }
 </failure>
 		</testcase>
 		<testcase name="[NONE][CKV_AWS_50] X-Ray tracing is enabled for Lambda" classname="/modules/compute/lambda_usuarios/main.tf.module.lambda_usuarios.aws_lambda_function.this" file="/modules/compute/lambda_usuarios/main.tf">
 			<failure type="failure" message="X-Ray tracing is enabled for Lambda">
 Resource: module.lambda_usuarios.aws_lambda_function.this
-File: /modules/compute/lambda_usuarios/main.tf: 86-111
+File: /modules/compute/lambda_usuarios/main.tf: 87-112
 Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-serverless-policies/bc-aws-serverless-4
 
-		86  | resource &quot;aws_lambda_function&quot; &quot;this&quot; {
-		87  |   function_name    = var.function_name
-		88  |   role             = aws_iam_role.lambda_role.arn
-		89  |   runtime          = var.runtime
-		90  |   handler          = var.handler
-		91  | 
-		92  |   filename         = data.archive_file.zip.output_path
-		93  |   source_code_hash = data.archive_file.zip.output_base64sha256
-		94  | 
-		95  |   memory_size      = var.memory_size
-		96  |   timeout          = var.timeout
-		97  | 
-		98  |   environment {
-		99  |     variables = {
-		100 |       USERS_TABLE = var.dynamodb_table_name
-		101 |     }
-		102 |   }
-		103 | 
-		104 |   tags = {
-		105 |     project     = &quot;Villa Alfredo&quot;
-		106 |     environment = terraform.workspace
-		107 |   }
-		108 | 
-		109 |   # Hacer referencia al Log Group ya creado en lugar de crear un ciclo
-		110 |   depends_on = [aws_cloudwatch_log_group.lambda_log_group]
-		111 | }
+		87  | resource &quot;aws_lambda_function&quot; &quot;this&quot; {
+		88  |   function_name    = var.function_name
+		89  |   role             = aws_iam_role.lambda_role.arn
+		90  |   runtime          = var.runtime
+		91  |   handler          = var.handler
+		92  | 
+		93  |   filename         = data.archive_file.zip.output_path
+		94  |   source_code_hash = data.archive_file.zip.output_base64sha256
+		95  | 
+		96  |   memory_size      = var.memory_size
+		97  |   timeout          = var.timeout
+		98  | 
+		99  |   environment {
+		100 |     variables = {
+		101 |       USERS_TABLE = var.dynamodb_table_name
+		102 |     }
+		103 |   }
+		104 | 
+		105 |   tags = {
+		106 |     project     = &quot;Villa Alfredo&quot;
+		107 |     environment = terraform.workspace
+		108 |   }
+		109 | 
+		110 |   # Hacer referencia al Log Group ya creado en lugar de crear un ciclo
+		111 |   depends_on = [aws_cloudwatch_log_group.lambda_log_group]
+		112 | }
 </failure>
 		</testcase>
 		<testcase name="[NONE][CKV_AWS_28] Ensure DynamoDB point in time recovery (backup) is enabled" classname="/modules/data/dynamodb/main.tf.module.usuarios_table.aws_dynamodb_table.this" file="/modules/data/dynamodb/main.tf">
@@ -485,6 +471,22 @@ Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aw
 
 		Code lines for this resource are too many. Please use IDE of your choice to review the file.</failure>
 		</testcase>
+		<testcase name="[NONE][CKV_AWS_145] Ensure that S3 buckets are encrypted with KMS by default" classname="/modules/edge/s3_cloudfront/main.tf.module.s3_cloudfront.aws_s3_bucket.this" file="/modules/edge/s3_cloudfront/main.tf">
+			<failure type="failure" message="Ensure that S3 buckets are encrypted with KMS by default">
+Resource: module.s3_cloudfront.aws_s3_bucket.this
+File: /modules/edge/s3_cloudfront/main.tf: 1-8
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-s3-buckets-are-encrypted-with-kms-by-default
+
+		1 | resource &quot;aws_s3_bucket&quot; &quot;this&quot; {
+		2 |   bucket = var.bucket_name
+		3 | 
+		4 |   tags = {
+		5 |     project     = &quot;Villa Alfredo&quot;
+		6 |     environment = &quot;dev&quot;
+		7 |   }
+		8 | }
+</failure>
+		</testcase>
 		<testcase name="[NONE][CKV2_AWS_42] Ensure AWS CloudFront distribution uses custom SSL certificate" classname="/modules/edge/s3_cloudfront/main.tf.module.s3_cloudfront.aws_cloudfront_distribution.cdn" file="/modules/edge/s3_cloudfront/main.tf">
 			<failure type="failure" message="Ensure AWS CloudFront distribution uses custom SSL certificate">
 Resource: module.s3_cloudfront.aws_cloudfront_distribution.cdn
@@ -493,11 +495,11 @@ Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aw
 
 		Code lines for this resource are too many. Please use IDE of your choice to review the file.</failure>
 		</testcase>
-		<testcase name="[NONE][CKV_AWS_145] Ensure that S3 buckets are encrypted with KMS by default" classname="/modules/edge/s3_cloudfront/main.tf.module.s3_cloudfront.aws_s3_bucket.this" file="/modules/edge/s3_cloudfront/main.tf">
-			<failure type="failure" message="Ensure that S3 buckets are encrypted with KMS by default">
+		<testcase name="[NONE][CKV2_AWS_61] Ensure that an S3 bucket has a lifecycle configuration" classname="/modules/edge/s3_cloudfront/main.tf.module.s3_cloudfront.aws_s3_bucket.this" file="/modules/edge/s3_cloudfront/main.tf">
+			<failure type="failure" message="Ensure that an S3 bucket has a lifecycle configuration">
 Resource: module.s3_cloudfront.aws_s3_bucket.this
 File: /modules/edge/s3_cloudfront/main.tf: 1-8
-Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-s3-buckets-are-encrypted-with-kms-by-default
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-2-61
 
 		1 | resource &quot;aws_s3_bucket&quot; &quot;this&quot; {
 		2 |   bucket = var.bucket_name
@@ -559,22 +561,6 @@ Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aw
 		42 | }
 </failure>
 		</testcase>
-		<testcase name="[NONE][CKV2_AWS_61] Ensure that an S3 bucket has a lifecycle configuration" classname="/modules/edge/s3_cloudfront/main.tf.module.s3_cloudfront.aws_s3_bucket.this" file="/modules/edge/s3_cloudfront/main.tf">
-			<failure type="failure" message="Ensure that an S3 bucket has a lifecycle configuration">
-Resource: module.s3_cloudfront.aws_s3_bucket.this
-File: /modules/edge/s3_cloudfront/main.tf: 1-8
-Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-2-61
-
-		1 | resource &quot;aws_s3_bucket&quot; &quot;this&quot; {
-		2 |   bucket = var.bucket_name
-		3 | 
-		4 |   tags = {
-		5 |     project     = &quot;Villa Alfredo&quot;
-		6 |     environment = &quot;dev&quot;
-		7 |   }
-		8 | }
-</failure>
-		</testcase>
 		<testcase name="[NONE][CKV2_AWS_6] Ensure that S3 bucket has a Public Access block" classname="/modules/edge/s3_cloudfront/main.tf.module.s3_cloudfront.aws_s3_bucket.this" file="/modules/edge/s3_cloudfront/main.tf">
 			<failure type="failure" message="Ensure that S3 bucket has a Public Access block">
 Resource: module.s3_cloudfront.aws_s3_bucket.this
@@ -607,11 +593,45 @@ Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aw
 		8 | }
 </failure>
 		</testcase>
+		<testcase name="[NONE][CKV2_AWS_64] Ensure KMS key Policy is defined" classname="/modules/security/Cloudwatch/kms_logs.tf.module.kms_logs.aws_kms_key.log_encryption" file="/modules/security/Cloudwatch/kms_logs.tf">
+			<failure type="failure" message="Ensure KMS key Policy is defined">
+Resource: module.kms_logs.aws_kms_key.log_encryption
+File: /modules/security/Cloudwatch/kms_logs.tf: 1-10
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-2-64
+
+		1  | resource &quot;aws_kms_key&quot; &quot;log_encryption&quot; {
+		2  |   description             = &quot;Clave KMS para cifrado de logs de CloudWatch&quot;
+		3  |   enable_key_rotation     = true
+		4  |   deletion_window_in_days = 10
+		5  | 
+		6  |   tags = {
+		7  |     project     = &quot;Villa Alfredo&quot;
+		8  |     environment = terraform.workspace
+		9  |   }
+		10 | }
+</failure>
+		</testcase>
 		<testcase name="[NONE][CKV2_AWS_62] Ensure S3 buckets should have event notifications enabled" classname="/modules/edge/s3_cloudfront/main.tf.module.s3_cloudfront.aws_s3_bucket.this" file="/modules/edge/s3_cloudfront/main.tf">
 			<failure type="failure" message="Ensure S3 buckets should have event notifications enabled">
 Resource: module.s3_cloudfront.aws_s3_bucket.this
 File: /modules/edge/s3_cloudfront/main.tf: 1-8
 Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-2-62
+
+		1 | resource &quot;aws_s3_bucket&quot; &quot;this&quot; {
+		2 |   bucket = var.bucket_name
+		3 | 
+		4 |   tags = {
+		5 |     project     = &quot;Villa Alfredo&quot;
+		6 |     environment = &quot;dev&quot;
+		7 |   }
+		8 | }
+</failure>
+		</testcase>
+		<testcase name="[NONE][CKV_AWS_18] Ensure the S3 bucket has access logging enabled" classname="/modules/edge/s3_cloudfront/main.tf.module.s3_cloudfront.aws_s3_bucket.this" file="/modules/edge/s3_cloudfront/main.tf">
+			<failure type="failure" message="Ensure the S3 bucket has access logging enabled">
+Resource: module.s3_cloudfront.aws_s3_bucket.this
+File: /modules/edge/s3_cloudfront/main.tf: 1-8
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-13-enable-logging
 
 		1 | resource &quot;aws_s3_bucket&quot; &quot;this&quot; {
 		2 |   bucket = var.bucket_name
@@ -630,22 +650,6 @@ File: /modules/edge/s3_cloudfront/main.tf: 14-87
 Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-general-47
 
 		Code lines for this resource are too many. Please use IDE of your choice to review the file.</failure>
-		</testcase>
-		<testcase name="[NONE][CKV_AWS_18] Ensure the S3 bucket has access logging enabled" classname="/modules/edge/s3_cloudfront/main.tf.module.s3_cloudfront.aws_s3_bucket.this" file="/modules/edge/s3_cloudfront/main.tf">
-			<failure type="failure" message="Ensure the S3 bucket has access logging enabled">
-Resource: module.s3_cloudfront.aws_s3_bucket.this
-File: /modules/edge/s3_cloudfront/main.tf: 1-8
-Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-13-enable-logging
-
-		1 | resource &quot;aws_s3_bucket&quot; &quot;this&quot; {
-		2 |   bucket = var.bucket_name
-		3 | 
-		4 |   tags = {
-		5 |     project     = &quot;Villa Alfredo&quot;
-		6 |     environment = &quot;dev&quot;
-		7 |   }
-		8 | }
-</failure>
 		</testcase>
 		<testcase name="[NONE][CKV_AWS_338] Ensure CloudWatch log groups retains logs for at least 1 year" classname="/modules/compute/lambda_usuarios/main.tf.module.lambda_usuarios.aws_cloudwatch_log_group.lambda_log_group" file="/modules/compute/lambda_usuarios/main.tf">
 			<skipped type="skipped" message=" Retención definida en 14 días por política interna de Villa Alfredo"/>
