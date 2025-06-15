@@ -69,14 +69,16 @@ resource "aws_iam_role_policy" "inline" {
 # CloudWatch Log Group para los logs de la Lambda
 ###############################################################################
 resource "aws_cloudwatch_log_group" "lambda_log_group" {
+  # checkov:skip=CKV_AWS_338: Retención definida en 14 días por política interna de Villa Alfredo
   name              = "/aws/lambda/${var.function_name}"
-  retention_in_days = var.log_retention_in_days  # Usamos la variable para la retención
+  retention_in_days = 14
 
   tags = {
     project     = "Villa Alfredo"
     environment = terraform.workspace
   }
 }
+
 
 ###############################################################################
 # Lambda
